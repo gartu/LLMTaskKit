@@ -2,6 +2,8 @@
 __pycache__/
 lib/
 dist/
+LLMTaskKit.egg-info/PKG-INFO
+LLMTaskKit.egg-info/requires.txt
 
 main.py
 tasks.yaml

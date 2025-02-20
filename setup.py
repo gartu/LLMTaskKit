@@ -7,7 +7,7 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="LLMTaskKit",
-    version="1.0.0",
+    version="1.0.1",
     author="Herzog Robin",
     author_email="llmtaskkit@gartu.xyz",
     description="A Python bookstore to simplify the definition, execution and chaining of tasks using LLMS.",
@@ -27,7 +27,6 @@ setup(
         "litellm",
         "pydantic",
         "pytest",
-        "python",
         "PyYAML",
     ],
 )
