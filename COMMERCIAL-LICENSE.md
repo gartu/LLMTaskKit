@@ -113,4 +113,4 @@ By acquiring the commercial license for LLMTaskKit, the Licensee acknowledges th
 
 ---
 
-*For any questions or additional information, please contact our licensing department at **v-licensing@gartu.xyz**.*
+*For any questions or additional information, please contact our licensing department at **license@gartu.xyz**.*
