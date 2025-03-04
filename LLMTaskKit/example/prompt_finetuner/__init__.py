@@ -1,3 +1,3 @@
-from .prompt_finetuner import PromptFintuner
+from .prompt_finetuner import PromptFinetuner
 
-__ALL__ = [PromptFintuner]
+__ALL__ = [PromptFinetuner]

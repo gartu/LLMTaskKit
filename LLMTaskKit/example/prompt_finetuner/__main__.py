@@ -1,5 +1,5 @@
 
-from LLMTaskKit.example.prompt_finetuner import PromptFintuner
+from LLMTaskKit.example.prompt_finetuner import PromptFinetuner
 
 if __name__ == "__main__":
-    PromptFintuner().exec()
+    PromptFinetuner().exec()

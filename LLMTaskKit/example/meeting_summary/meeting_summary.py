@@ -1,4 +1,3 @@
-
 from dotenv import load_dotenv
 import os
 import logging
@@ -6,7 +5,7 @@ from LLMTaskKit.core.llm import LLMConfig
 from LLMTaskKit.core.task import load_raw_tasks_from_yaml, Task
 from LLMTaskKit.prompt_chain.task_chain_executor import TaskChainExecutor
 from pydantic import BaseModel
-from typing import List, cast
+from typing import List, cast, Any
 import json
 
 class SpeakerKey(BaseModel):
@@ -116,6 +115,9 @@ class MeetingSummary():
         
         return rawspeakers
 
+    def _callback(self, task_name: str, result: Any) -> None:
+        logging.info(f"Task {task_name} completed with result: {result}")
+
     def exec(self):
         logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
@@ -125,9 +127,8 @@ class MeetingSummary():
 
         task_TopicExtraction = Task.from_raw(raw_tasks["TopicExtraction"], output_pydantic=TranscriptionSummary, forced_output_format="json")
         task_RolesExtraction = Task.from_raw(raw_tasks["RolesExtraction"], output_pydantic=RawSpeakers, forced_output_format="json")
-        # assistant_prefill="<thinking>Ok. Je vais tenter de trouver le rôle de chaque personne ainsi que, très important, déduire le nom de chacun des participants. Afin de faire cela je peux prendre tout le temps que je souhaite pour réfléchir en posant mentalement tout ce que je peux déduire. Allons-y, on va débuter cette longue réfléxion !\nAlors pour débuter, je") # forced_output_format="json")
                 
-        executor = TaskChainExecutor(self.llm, verbose=True)
+        executor = TaskChainExecutor(self.llm, verbose=True, callback=self._callback)
         result = executor.execute([task_TopicExtraction, task_RolesExtraction], initial_context)
 
         initial_context = {**executor.context}
@@ -150,9 +151,8 @@ class MeetingSummary():
 
         tasks_chain = [task_RisksIdentification, task_SummaryCreation, task_ActionsDefinition, task_MeetingReportCreation, task_MeetingReportReview]
 
-        executor = TaskChainExecutor(self.llm, verbose=True, step_by_step=True)
+        executor = TaskChainExecutor(self.llm, verbose=True, callback=self._callback)
         result = executor.execute(tasks_chain, initial_context)
 
         logging.info("Result :")
         logging.info(result)
-        

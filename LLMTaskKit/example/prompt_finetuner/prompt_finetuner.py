@@ -1,4 +1,3 @@
-
 from dotenv import load_dotenv
 import os
 import logging
@@ -6,7 +5,7 @@ from LLMTaskKit.core.llm import LLMConfig
 from LLMTaskKit.core.task import load_raw_tasks_from_yaml, Task, TaskExecutor
 from LLMTaskKit.prompt_chain.task_chain_executor import TaskChainExecutor
 from pydantic import BaseModel
-from typing import List, cast
+from typing import List, cast, Any
 
 class Questions(BaseModel):
     questions: List[str]
@@ -31,7 +30,7 @@ class RefinedPromptWithBrainstorm(BaseModel):
     brainstorm: str
     refined_prompt: str
 
-class PromptFintuner:
+class PromptFinetuner:
 
     def __init__(self):
         load_dotenv()
@@ -39,6 +38,8 @@ class PromptFintuner:
 
         self.llm = LLMConfig(api_key=gemini_api_key, model="gemini/gemini-2.0-flash-exp", temperature=0.8)
 
+    def _callback(self, task_name: str, result: Any) -> None:
+        logging.info(f"Task {task_name} completed with result: {result}")
 
     def exec(self):
         logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -65,9 +66,8 @@ class PromptFintuner:
         context = {**executor.context, "questions": answers}
 
         tasks_chain = [task_DraftPrompt, task_EvaluatePrompt, task_PimpPrompt, task_ReviewPrompt]
-        chain_executor = TaskChainExecutor(self.llm, verbose=False, step_by_step=False)
+        chain_executor = TaskChainExecutor(self.llm, verbose=False, callback=self._callback)
         chain_executor.execute(tasks_chain, context)
 
         logging.info("Result :")
         logging.info(chain_executor.result)
-    

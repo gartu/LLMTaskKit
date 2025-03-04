@@ -1,9 +1,13 @@
-from typing import Any, Dict, List
+from typing import Any, Callable, Dict, List, TypeVar
 
 from LLMTaskKit.core.task import Task, TaskExecutor
 from LLMTaskKit.core.llm import LLMConfig
 
 TASK_RESULT_KEY = "TASK_RESULT"
+
+TaskName = str
+TaskResult = Any
+TaskCallback = Callable[[TaskName, TaskResult], None]
 
 
 class TaskChainExecutor:
@@ -15,7 +19,7 @@ class TaskChainExecutor:
         self,
         llm: LLMConfig,
         verbose: bool = False,
-        step_by_step: bool = False,
+        callback: TaskCallback = None,
     ) -> None:
         """
         Initializes the TaskChainExecutor.
@@ -23,11 +27,12 @@ class TaskChainExecutor:
         Args:
             llm (LLMConfig): The LLM configuration to use.
             verbose (bool): Flag to enable verbose logging.
+            callback (TaskCallback, optional): A callback function to be called after each task execution.
         """
         self.result = None
         self.llm = llm
         self.verbose = verbose
-        self.step_by_step = step_by_step
+        self.callback = callback
 
     def execute(self, tasks: List[Task], context: Dict[str, Any] = None) -> Any:
         """
@@ -47,8 +52,8 @@ class TaskChainExecutor:
             result = task_executor.execute(task, self.context)
             self.context[TASK_RESULT_KEY][task.name] = result
 
-            if self.step_by_step:
-                input("Press enter to continue")
+            if self.callback:
+                self.callback(task.name, result)
                 
         self.result = self.context[TASK_RESULT_KEY][tasks[-1].name]
         return self.result
