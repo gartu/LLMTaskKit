@@ -1,0 +1,39 @@
+[project]
+name = "llmtaskkit"
+version = "1.1.0"
+description = "A Python bookstore to simplify the definition, execution and chaining of tasks using LLMS."
+authors = [
+    {name = "Herzog Robin"}
+]
+license = {text = "GNU General Public License v3 (GPLv3)"}
+readme = "README.md"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8,<4.0"
+dependencies = [
+    "litellm (>=1.62.1,<1.63.0)",
+    "pydantic (>=2.10.6,<3.0.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "pyyaml (>=6.0.2,<7.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+
+[tool.poetry]
+name = "LLMTaskKit"
+version = "1.1.0"
+description = "A Python bookstore to simplify the definition, execution and chaining of tasks using LLMS."
+readme = "README.md"  # Le contenu du README sera utilisé pour la long_description.
+authors = ["Herzog Robin <llmtaskkit@gartu.xyz>"]
+homepage = "https://github.com/gartu/LLMTaskKit"
+
