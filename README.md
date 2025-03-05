@@ -20,6 +20,12 @@ LLMTaskKit is a Python library designed to simplify the definition, execution, a
 
 LLMTaskKit enables developers to create and manage LLM-driven workflows by abstracting tasks into self-contained units. Each task includes prompts, context, and optional output validation through Pydantic models. The library supports both standalone task execution as well as sequential (chained) execution for more complex processing pipelines.
 
+## Installation
+
+```bash
+poetry install
+```
+
 ## Key Components
 
 ### Tasks
