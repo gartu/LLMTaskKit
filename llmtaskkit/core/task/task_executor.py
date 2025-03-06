@@ -4,8 +4,8 @@ import logging
 from typing import Any, Union
 
 from litellm import ModelResponse, CustomStreamWrapper
-from LLMTaskKit.core.task import Task
-from LLMTaskKit.core.llm import LLMConfig
+from llmtaskkit.core.task import Task
+from llmtaskkit.core.llm import LLMConfig
 
 
 class TaskExecutor:

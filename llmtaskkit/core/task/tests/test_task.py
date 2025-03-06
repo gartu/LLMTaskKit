@@ -5,9 +5,9 @@ import pytest
 from pydantic import BaseModel
 
 # Import the classes under test.
-from LLMTaskKit.core.task import Task
-from LLMTaskKit.core.llm import LLMConfig
-from LLMTaskKit.core.prompt import XmlPromptBuilder
+from llmtaskkit.core.task import Task
+from llmtaskkit.core.llm import LLMConfig
+from llmtaskkit.core.prompt import XmlPromptBuilder
 
 # ------------------------------------------------------------------------------
 # Dummy Classes for Testing
@@ -73,7 +73,7 @@ def test_system_prompt_validator():
 
 def test_llm_validator_instance(monkeypatch):
     # Passing an instance of DummyLLMConfig should be accepted as-is.
-    monkeypatch.setattr("LLMTaskKit.core.llm.LLMConfig", DummyLLMConfig)
+    monkeypatch.setattr("llmtaskkit.core.llm.LLMConfig", DummyLLMConfig)
     dummy_llm = DummyLLMConfig(response_content="instance response", model="dummy")
     task = Task(name="Test", system_prompt="Prompt", llm=dummy_llm)
     # The validator should simply return the provided instance.
@@ -130,7 +130,7 @@ def fake_substitute_placeholders(prompt, context):
 @pytest.fixture
 def builder(monkeypatch):
     # Patch substitute_placeholders in the xml_prompt_builder module
-    monkeypatch.setattr("LLMTaskKit.core.prompt.xml_prompt_builder.substitute_placeholders", fake_substitute_placeholders)
+    monkeypatch.setattr("llmtaskkit.core.prompt.xml_prompt_builder.substitute_placeholders", fake_substitute_placeholders)
     return XmlPromptBuilder()
 
 def test_get_system_prompt(monkeypatch):

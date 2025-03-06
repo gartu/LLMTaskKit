@@ -4,7 +4,7 @@ import pytest
 from pydantic import BaseModel
 
 # Import the classes under test
-from LLMTaskKit.core.task import Task, TaskExecutor
+from llmtaskkit.core.task import Task, TaskExecutor
 
 class DummyLLMConfig:
     """
@@ -41,7 +41,7 @@ class DummyOutputModel(BaseModel):
 @pytest.fixture
 def dummy_executor(monkeypatch):
     # Create a dummy TaskExecutor with a default LLM (using our dummy implementation).
-    monkeypatch.setattr("LLMTaskKit.core.llm.LLMConfig", DummyLLMConfig)
+    monkeypatch.setattr("llmtaskkit.core.llm.LLMConfig", DummyLLMConfig)
     default_llm = DummyLLMConfig(response_content="default response", model="dummy")
     return TaskExecutor(default_llm=default_llm, verbose=True)
 

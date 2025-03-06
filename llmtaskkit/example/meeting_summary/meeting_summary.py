@@ -1,9 +1,9 @@
 from dotenv import load_dotenv
 import os
 import logging
-from LLMTaskKit.core.llm import LLMConfig
-from LLMTaskKit.core.task import load_raw_tasks_from_yaml, Task
-from LLMTaskKit.prompt_chain.task_chain_executor import TaskChainExecutor
+from llmtaskkit.core.llm import LLMConfig
+from llmtaskkit.core.task import load_raw_tasks_from_yaml, Task
+from llmtaskkit.prompt_chain.task_chain_executor import TaskChainExecutor
 from pydantic import BaseModel
 from typing import List, cast, Any
 import json
@@ -123,7 +123,7 @@ class MeetingSummary():
 
         initial_context = { "transcription": self.transcription }
 
-        raw_tasks = load_raw_tasks_from_yaml("./LLMTaskKit/example/meeting_summary/meeting_summary_tasks_fr.yaml")
+        raw_tasks = load_raw_tasks_from_yaml("./llmtaskkit/example/meeting_summary/meeting_summary_tasks_fr.yaml")
 
         task_TopicExtraction = Task.from_raw(raw_tasks["TopicExtraction"], output_pydantic=TranscriptionSummary, forced_output_format="json")
         task_RolesExtraction = Task.from_raw(raw_tasks["RolesExtraction"], output_pydantic=RawSpeakers, forced_output_format="json")

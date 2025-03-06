@@ -3,9 +3,9 @@ from typing import Any, Dict, List, Optional, Type
 
 from pydantic import BaseModel, field_validator, ConfigDict, PrivateAttr
 
-from LLMTaskKit.core.llm import LLMConfig
-from LLMTaskKit.core.task import RawTask
-from LLMTaskKit.core.prompt import PromptBuilder, substitute_placeholders, XmlPromptBuilder
+from llmtaskkit.core.llm import LLMConfig
+from llmtaskkit.core.task import RawTask
+from llmtaskkit.core.prompt import PromptBuilder, substitute_placeholders, XmlPromptBuilder
 
 
 class Task(BaseModel):
