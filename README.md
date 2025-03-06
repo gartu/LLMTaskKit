@@ -56,7 +56,7 @@ You can instantiate a Task from raw YAML data as follows:
 
 ```python
 import yaml
-from LLMTaskKit.core.task import Task
+from llmtaskkit.core.task import Task
 
 # Load tasks definitions from a YAML file
 with open('tasks.yaml', 'r') as file:
@@ -84,9 +84,8 @@ Below is an example of how to execute a task using a TaskExecutor, including loa
 ```python
 import yaml
 import logging
-from LLMTaskKit.core.task import Task, TaskExecutor
-from LLMTaskKit.core.llm_config import LLMConfig
-
+from llmtaskkit.core.task import Task, TaskExecutor
+from llmtaskkit.core.llm_config import LLMConfig
 
 # Create an LLM configuration (LiteLLM is used under the hood)
 llm_config = LLMConfig(api_key="your_api_key", model="gpt-4")
@@ -126,9 +125,9 @@ Consider the following example:
 
 ```python
 import yaml
-from LLMTaskKit.core.task import Task
-from LLMTaskKit.prompt_chain.task_chain_executor import TaskChainExecutor
-from LLMTaskKit.core.llm_config import LLMConfig
+from llmtaskkit.core.task import Task
+from llmtaskkit.prompt_chain.task_chain_executor import TaskChainExecutor
+from llmtaskkit.core.llm_config import LLMConfig
 
 # Create an LLM configuration (LiteLLM is used under the hood)
 llm_config = LLMConfig(api_key="your_api_key", model="gpt-4")
@@ -234,7 +233,7 @@ Simply install the library (and any optional dependencies for your specific LLM)
 
 1. **Installation:**
    ```bash
-   pip install LLMTaskKit
+   pip install llmtaskkit
    ```
 
 2. **Define Your Tasks:**

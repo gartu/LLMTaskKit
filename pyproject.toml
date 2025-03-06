@@ -1,6 +1,6 @@
 [project]
 name = "llmtaskkit"
-version = "1.1.0"
+version = "1.1.1"
 description = "A Python bookstore to simplify the definition, execution and chaining of tasks using LLMS."
 authors = [
     {name = "Herzog Robin"}
@@ -30,8 +30,8 @@ build-backend = "poetry.core.masonry.api"
 pytest = "^8.3.5"
 
 [tool.poetry]
-name = "LLMTaskKit"
-version = "1.1.0"
+name = "llmtaskkit"
+version = "1.1.1"
 description = "A Python bookstore to simplify the definition, execution and chaining of tasks using LLMS."
 readme = "README.md"  # Le contenu du README sera utilisé pour la long_description.
 authors = ["Herzog Robin <llmtaskkit@gartu.xyz>"]

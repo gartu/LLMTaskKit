@@ -1,7 +1,7 @@
 from typing import Any, Callable, Dict, List, TypeVar
 
-from LLMTaskKit.core.task import Task, TaskExecutor
-from LLMTaskKit.core.llm import LLMConfig
+from llmtaskkit.core.task import Task, TaskExecutor
+from llmtaskkit.core.llm import LLMConfig
 
 TASK_RESULT_KEY = "TASK_RESULT"
 

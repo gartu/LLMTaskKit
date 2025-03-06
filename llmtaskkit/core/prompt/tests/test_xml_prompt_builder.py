@@ -1,7 +1,7 @@
 import pytest
 
 # Adaptez l'import ci-dessous selon la structure de votre projet.
-from LLMTaskKit.core.prompt.xml_prompt_builder import XmlPromptBuilder
+from llmtaskkit.core.prompt.xml_prompt_builder import XmlPromptBuilder
 
 # Fonction factice pour simuler substitute_placeholders.
 def fake_substitute_placeholders(text, context):
@@ -15,7 +15,7 @@ def fake_substitute_placeholders(text, context):
 @pytest.fixture
 def builder(monkeypatch):
     # Patch de la fonction substitute_placeholders dans le module xml_prompt_builder.
-    monkeypatch.setattr("LLMTaskKit.core.prompt.xml_prompt_builder.substitute_placeholders", fake_substitute_placeholders)
+    monkeypatch.setattr("llmtaskkit.core.prompt.xml_prompt_builder.substitute_placeholders", fake_substitute_placeholders)
     return XmlPromptBuilder()
 
 def test_build_prompt_with_string(builder):

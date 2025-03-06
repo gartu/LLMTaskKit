@@ -1,9 +1,9 @@
 from dotenv import load_dotenv
 import os
 import logging
-from LLMTaskKit.core.llm import LLMConfig
-from LLMTaskKit.core.task import load_raw_tasks_from_yaml, Task, TaskExecutor
-from LLMTaskKit.prompt_chain.task_chain_executor import TaskChainExecutor
+from llmtaskkit.core.llm import LLMConfig
+from llmtaskkit.core.task import load_raw_tasks_from_yaml, Task, TaskExecutor
+from llmtaskkit.prompt_chain.task_chain_executor import TaskChainExecutor
 from pydantic import BaseModel
 from typing import List, cast, Any
 
@@ -44,7 +44,7 @@ class PromptFinetuner:
     def exec(self):
         logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-        raw_tasks = load_raw_tasks_from_yaml("./LLMTaskKit/example/prompt_finetuner/prompts_finetuner_tasks_fr.yaml")
+        raw_tasks = load_raw_tasks_from_yaml("./llmtaskkit/example/prompt_finetuner/prompts_finetuner_tasks_fr.yaml")
 
         task_StretchPrompt = Task.from_raw(raw_tasks["StretchPrompt"], output_pydantic=Questions, forced_output_format="json")
         task_DraftPrompt = Task.from_raw(raw_tasks["DraftPrompt"], output_pydantic=PromptDrafts, forced_output_format="json")
