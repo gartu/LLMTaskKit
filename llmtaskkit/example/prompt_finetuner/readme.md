@@ -15,4 +15,11 @@ By systematically refining prompt drafts, Prompt Fine-Tuner:
 - Incorporates detailed evaluations and feedback for continuous improvement.
 - Produces final prompts that are coherent, actionable, and tailored to the intended use case.
 
-This approach not only improves prompt quality but also enhances overall interaction with AI models, ensuring outputs that are both relevant and robust.
+## Setup Instructions
+
+1. Ensure that a `.env` file is present at the root of the project with the `GEMINI_API_KEY` defined. You can obtain the API key from [Google AI Studio](https://aistudio.google.com/apikey).
+2. Run the following command from the root of the project:
+   ```sh
+   poetry run python -m llmtaskkit.example.prompt_finetuner
+   ```
+
